@@ -57,19 +57,19 @@ button:hover {
 .item {
     padding: 10px;
     cursor: pointer;
-    display: flex; /* Добавляем свойство display: flex; */
-    flex-direction: column; /* Устанавливаем направление flex-контейнера на колонку */
+    display: flex; 
+    flex-direction: column;
 }
 
 .item-img {
     width: auto;
-    max-height: 200px; /* Изменяем максимальную высоту изображения */
+    max-height: 200px; 
     object-fit: contain;
     border-radius: 4px;
 }
 
 .item-info {
-    flex: 1; /* Устанавливаем flex-grow: 1; для расширения содержимого по всей доступной области */
+    flex: 1;
     margin-top: 10px;
 }
 
