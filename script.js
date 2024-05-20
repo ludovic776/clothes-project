@@ -8,6 +8,7 @@ const closeBtn = document.querySelector('.close');
 
 let data;
 
+//Функция загрузки данных
 async function fetchData() {
     try {
         const response = await fetch('https://raw.githubusercontent.com/AvinashPatel15/Fashion-Database-Api/master/db.json');
@@ -17,6 +18,7 @@ async function fetchData() {
     }
 }
 
+//Функция поиска товаров
 function searchItems(e) {
     e.preventDefault();
 
@@ -43,6 +45,7 @@ function searchItems(e) {
     search.value = '';
 }
 
+//Функция отображения товаров
 function displayItems(items) {
     itemsContainer.innerHTML = items.map(item => `
         <div class="item">
@@ -56,6 +59,7 @@ function displayItems(items) {
     `).join('');
 }
 
+//Функция получения случайного товара
 function getRandomItem() {
     if (!data) {
         console.error('Данные еще не загружены');
@@ -83,6 +87,7 @@ function getRandomItem() {
     `;
 }
 
+//Обработчики событий
 submit.addEventListener('submit', searchItems);
 random.addEventListener('click', getRandomItem);
 fetchData();
