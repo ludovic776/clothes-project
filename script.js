@@ -8,18 +8,18 @@ const closeBtn = document.querySelector('.close');
 
 let data;
 
-// Load data
+//Функция загрузки данных
 async function fetchData() {
     try {
         const response = await fetch('https://raw.githubusercontent.com/AvinashPatel15/Fashion-Database-Api/master/db.json');
         data = await response.json();
-        console.log('Data loaded:', data); // Отладка
+        console.log('Data loaded:', data);
     } catch (error) {
         console.error('Error loading data:', error);
     }
 }
 
-// Search items
+//Функция поиска товаров
 function searchItems(e) {
     e.preventDefault();
 
@@ -31,7 +31,7 @@ function searchItems(e) {
     itemsContainer.innerHTML = '';
 
     const term = search.value.trim().toLowerCase();
-    console.log('Search term:', term); // Отладка
+    console.log('Search term:', term);
 
     const matchingItems = Object.values(data).flat().filter(item =>
         item.title && item.title.toLowerCase().includes(term)
@@ -47,9 +47,9 @@ function searchItems(e) {
     search.value = '';
 }
 
-// Display items
+//Функция отображения товаров
 function displayItems(items) {
-    console.log('Displaying items:', items); // Отладка
+    console.log('Displaying items:', items);
 
     itemsContainer.innerHTML = items.map(item => `
         <div class="item">
@@ -67,21 +67,20 @@ function displayItems(items) {
     });
 }
 
-// Show details in modal
-function showDetails(e) {
-    const itemId = e.target.getAttribute('data-id');
-    console.log('Clicked item ID:', itemId); // Отладка
+//Модальное окно с отображением
+function showDetails(event) {
+    const itemId = event.target.getAttribute('data-id');
+    console.log('Clicked item ID:', itemId);
 
     if (!data) {
         console.error('Data not yet loaded');
         return;
     }
 
-    // Преобразуем идентификатор в строку для поиска
     const item = Object.values(data).flat().find(item => String(item.id) === itemId);
 
     if (item) {
-        console.log('Item found:', item); // Отладка
+        console.log('Item found:', item);
 
         const modalImagesContainer = document.querySelector('.modal-images');
         modalImagesContainer.innerHTML = item.images.map(image => `<img src="${image}" alt="${item.title}"/>`).join('');
@@ -89,14 +88,26 @@ function showDetails(e) {
         document.getElementById('modal-title').textContent = item.title;
         document.getElementById('modal-price').textContent = `Price: $${item.price}`;
         document.getElementById('modal-description').textContent = item.description || 'No description available';
+        document.getElementById('modal-size').textContent = `Size: ${item.size}`;
+        document.getElementById('modal-brand').textContent = `Brand: ${item.brand}`;
+        document.getElementById('modal-color').textContent = `Color: ${item.color}`;
+        document.getElementById('modal-discount').textContent = `Discount: ${item.discount}%`;
+        document.getElementById('modal-off-price').textContent = `Original Price: $${item.off_price}`;
+        document.getElementById('modal-rating').textContent = `Rating: ${item.rating}`;
+
+        document.querySelectorAll('.modal-text').forEach(textElement => {
+            textElement.style.color = 'black';
+        });
 
         modal.style.display = 'block';
     } else {
-        console.error('Item not found:', itemId); // Отладка
+        console.error('Item not found:', itemId);
     }
 }
 
-// Get random item
+
+
+//Функция получения случайного товара
 function getRandomItem() {
     if (!data) {
         console.error('Data not yet loaded');
@@ -128,7 +139,7 @@ function getRandomItem() {
     });
 }
 
-// Event listeners
+//Обработчики событий
 submit.addEventListener('submit', searchItems);
 random.addEventListener('click', getRandomItem);
 fetchData();

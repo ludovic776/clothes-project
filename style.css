@@ -57,13 +57,13 @@ button:hover {
 .item {
     padding: 10px;
     cursor: pointer;
-    display: flex; 
+    display: flex;
     flex-direction: column;
 }
 
 .item-img {
     width: auto;
-    max-height: 200px; 
+    max-height: 200px;
     object-fit: contain;
     border-radius: 4px;
 }
@@ -98,11 +98,11 @@ button:hover {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
+    width: 90%;
+    max-width: 800px;
     border-radius: 10px;
 }
 
@@ -136,4 +136,12 @@ button:hover {
 .modal-images img {
     max-height: 200px;
     border-radius: 4px;
+}
+
+.modal-info p {
+    margin: 5px 0;
+}
+
+.modal  {
+    color: black;
 }
